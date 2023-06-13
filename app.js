@@ -17,30 +17,55 @@ const inventors = [
   // Array.prototype.filter()
   // 1. Filter the array of inventors into a new array containing only the inventors born in the 1500's
   
+  const inventorsFrom1500 = inventors.filter((inventor) => inventor.year >= 1500 && inventor.year <=1600);
   
-  
+  console.log(inventorsFrom1500);
+
   // Array.prototype.map()
   // 2. Map the array of the inventors into a new array containing objects with just the first and last names as properties
   // Hint:  Return a new object literal from the callback (don't mutate the object being passed in to map)
   
+  const nameProperty = inventors.map((names) => 
   
+  {return {firstName: names.first, lastName: names.last}});
+
+  console.log(nameProperty);
   
   // Array.prototype.sort()
   // 3. Sort the inventors by birth date (year property), in ascending order
   
+  const birthYear = inventors.sort((a, b) => {
+    return a.year - b.year;
+  });
   
-  
+  console.log(birthYear);
+
   // Array.prototype.find()
   // 4. Find the inventor object with the first name of 'Ada'
   
-  
+  const withFirstName = inventors.find((name) => name.first === 'Ada');
+  console.log(withFirstName); 
   
   // Array.prototype.reduce()
   // 5. How many years did all the inventors live?
   
+
+  const yearsTill = inventors.reduce((accumulator, currentValue) => accumulator + (currentValue.passed, 0))
   
+  const yearsFrom = inventors.reduce((accumulator, currentValue) => accumulator + (currentValue.year, 0))
   
-  
+  const yearsLived = yearsTill - yearsFrom;
+
+  console.log(yearsLived);
+
+
+  //More straightforward solution from Hyak
+  /*
+  console.log(
+    inventors.reduce((totalYears, inventor) => totalYears + (inventor.passed - inventor.year), 0 
+  ))
+*/
+
   const people = [
     'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry',
     'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul',
@@ -59,9 +84,15 @@ const inventors = [
   // 6. Map the people array such that the new array consists of strings with the names formatted as "First Last", e.g., "Becker, Carl" should be mapped to "Carl Becker".
   // Hint: As a start, consider using the String.prototype.split method to "split" the string using ', ' as the separator
   
+  const fullName = people.map(function(personName) {
   
+    const names = personName.split(", ");
+      return `${names[1]} ${names[0]}`
+    })
+    console.log(fullName);
   
-  
+
+
   const data = [
     'car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van',
     'bike', 'walk', 'car', 'van', 'car', 'truck'
@@ -70,25 +101,47 @@ const inventors = [
   // Array.prototype.reduce()
   // 7. Count the number of instances for each of the data items. The reduce should return an object where the keys are 'car', 'truck', etc. and the values are the count.
   // Hint: Since you want to return an object, be sure to pass an empty {} for the initial value of the "accumulator".
-  
-  
-  
+
+   
+    console.log(
+        data.reduce((count, car) => {
+            count[car] = count[car] ? ++count[car]:1
+            return count
+        },{})
+        
+    )
+
+
+
+
   const devs = [
     { name: 'Wes', year: 1988 },
     { name: 'Kait', year: 1986 },
     { name: 'Irv', year: 1970 },
     { name: 'Lux', year: 2015 }
   ];
-  
+
   // Array.prototype.some()
   // 8. Check if at least one person is 19 or older?
   // Hint: To get today's year, use the getFullYear method of new Date(), i.e., new Date().getFullYear()
   
-  
+  let age = new Date();
+  let yearNow = age.getFullYear()
+console.log(age);
+
+const isAdult = devs.some((dev) => (yearNow - dev.year) >= 19)
+  console.log(isAdult);
+
   // Array.prototype.every()
   // 9. Check if everyone is 19 or older?
   
+  const isEveryoneAdult = devs.every((dev) => (yearNow - dev.year) >=19)
   
+  console.log(isEveryoneAdult);
+
+
+
+
   
   const comments = [
     { text: 'Love this!', id: 523423 },
@@ -98,14 +151,18 @@ const inventors = [
     { text: 'Nice Nice Nice!', id: 542328 }
   ];
   
+
   // Array.prototype.find()
   // 10. Find the comment with the id of 823423
   
-  
-  
+  const findID = comments.find((onlyID) => onlyID.id === 823423);
+  console.log(findID);
+
+
   // Array.prototype.findIndex()
   // 11. Find the index of the comment with an id of 123523
   
-  
+  const findIdx = comments.findIndex((comment) => comment.id === 123523);
+  console.log(findIdx);
   
   
